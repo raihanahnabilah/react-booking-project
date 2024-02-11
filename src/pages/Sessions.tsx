@@ -28,25 +28,66 @@ export default function SessionsPage() {
 
   const menuItems = [...new Set(SESSIONS.map((session) => session.category))]
 
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+  // const [filteredItems, setFilteredItems] = useState(activeSessions);
+
+  function filterButtonHandler(selectedCategory: string) {
+    if (selectedFilters.includes(selectedCategory)){
+      let filters = selectedFilters.filter((category) => category !== selectedCategory); // remove the filter
+      setSelectedFilters(filters);
+      // console.log(selectedCategory);
+      // console.log(selectedFilters);
+    } else {
+      setSelectedFilters([...selectedFilters, selectedCategory]); // add the filter
+      // console.log(selectedCategory);
+      // console.log(selectedFilters);
+    }
+  } 
+
   useEffect(() => {
+    // For search filter
       const filtered = SESSIONS.filter((session) => {
-          return searchInput.toLowerCase() === '' ? session : session.title.toLowerCase().includes(searchInput)
-      })
-      setActiveSessions(filtered);
+          const searchFilter = searchInput.toLowerCase() === '' ? session : session.title.toLowerCase().includes(searchInput)
+          return searchFilter
+      });
+
+      // buttons filter
+      if (selectedFilters.length > 0){
+        let currentSessions = selectedFilters.map((selectedCategory) => {
+          let sessions = filtered.filter((session) => session.category === selectedCategory);
+          return sessions;
+        });
+        setActiveSessions(currentSessions.flat());
+      } else {
+        setActiveSessions([...filtered]);
+      }
+                
+      // setActiveSessions(filtered);
+
       // console.log(activeSessions);
       // if (searchInput.length > 0){
       //     SESSIONS.filter((session) => {
       //         return session.title.match(searchInput);
       //     })
       // }
-    }, [searchInput, activeSessions]);
 
+      // // For the buttons filter
+      // if (selectedFilters.length > 0){
+      //   let currentSessions = selectedFilters.map((selectedCategory) => {
+      //     let sessions = activeSessions.filter((session) => session.category === selectedCategory);
+      //     return sessions;
+      //   });
+      //   setFilteredItems(currentSessions.flat());
+      // } else {
+      //   setFilteredItems([...activeSessions]);
+      // }
+    }, [searchInput, selectedFilters]);
     
   return (
     <main id="sessions-page">
         <div className="search"> 
             <input type="search"
-            placeholder="Search here"
+            placeholder="Search a mentoring session"
             onChange={changeHandler}
             value={searchInput}
             id="search"
@@ -60,10 +101,10 @@ export default function SessionsPage() {
         <div className="filter-wrapper">
           Filter: 
           {
-          menuItems.map((item) => {
-            return (
-              <Button>{item}</Button>
-            )
+          menuItems.map((category) => {
+            const isActive = selectedFilters?.includes(category);
+            const component = isActive ? (<Button onClick={() => filterButtonHandler(category)}>{category}</Button>) : (<Button textOnly onClick={() => filterButtonHandler(category)}>{category}</Button>);
+            return component;
           })
         }
         </div>
