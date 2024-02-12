@@ -1,5 +1,6 @@
-import { forwardRef, useImperativeHandle, useRef } from "react";
+import { forwardRef, useContext, useImperativeHandle, useRef } from "react";
 import ReactDOM from "react-dom";
+import { ThemeContext } from "../../storage/theme-context";
 
 export type ModalHandle = {
     open: () => void;
@@ -23,10 +24,14 @@ const Modal = forwardRef<ModalHandle, ModalProps>(function Modal({ children }, r
         };
     });
 
+    const { theme, setTheme } = useContext(ThemeContext);
+
     return ReactDOM.createPortal(
-        <dialog ref={modal} className="modal">
-            {children}
-        </dialog>,
+        <div className={`${theme}-theme`}>
+            <dialog ref={modal} className="modal">
+                {children}
+            </dialog>
+        </div>,
         document.getElementById("modal-root")!
     );
 });

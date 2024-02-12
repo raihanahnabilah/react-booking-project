@@ -1,6 +1,7 @@
 import studentsImg from '../assets/students.jpg';
 import listImg from '../assets/list.jpg';
 import certificateImg from '../assets/certificate.jpg';
+import '../index.scss';
 
 export default function HomePage() {
   return (

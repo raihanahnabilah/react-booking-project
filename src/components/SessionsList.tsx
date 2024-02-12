@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { SESSIONS } from "../storage/dummy-sessions";
 import Button from "./UI/Button";
 import { Session } from "../storage/upcoming-sessions";
-import { FaSearch } from "react-icons/fa";
+import '../index.scss';
 
 
 export default function SessionsList(){
@@ -14,18 +14,7 @@ export default function SessionsList(){
     e.preventDefault();
     setSearchInput(e.target.value);
     console.log(e.target.value);
-    // const filtered = SESSIONS.filter((session) => {
-    //         return searchInput.toLowerCase() === '' ? session : session.title.toLowerCase().includes(searchInput)
-    //     })
-    // setActiveSessions(filtered);
     }
-
-    // const searchHandler = () => {
-    //     const filtered = SESSIONS.filter((session) => {
-    //         return searchInput.toLowerCase() === '' ? session : session.title.toLowerCase().includes(searchInput)
-    //     })
-    //     setActiveSessions(filtered);
-    // }
 
     useEffect(() => {
         const filtered = SESSIONS.filter((session) => {
@@ -33,11 +22,6 @@ export default function SessionsList(){
         })
         setActiveSessions(filtered);
         console.log(activeSessions);
-        // if (searchInput.length > 0){
-        //     SESSIONS.filter((session) => {
-        //         return session.title.match(searchInput);
-        //     })
-        // }
       }, [searchInput, activeSessions]);
 
     return (
@@ -48,18 +32,11 @@ export default function SessionsList(){
             onChange={changeHandler}
             value={searchInput}
             id="search"
-            >
-                </input>
-          {/* <Button type="submit" onClick={searchHandler}>
-              <FaSearch />
-          </Button> */}
+            />
         </div>
 
         <ul id="sessions-list">
         {activeSessions.map((session) => {
-        // {SESSIONS.filter((session) => {
-        //     return searchInput.toLowerCase() === '' ? session : session.title.toLowerCase().includes(searchInput)
-        // }).map((session) => {
           return (
             <li key={session.id}>
               <div className="session-item">

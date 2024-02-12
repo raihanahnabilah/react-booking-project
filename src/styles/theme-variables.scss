@@ -1,0 +1,53 @@
+$themes: (
+  light: (
+    bodyBackgroundColor: #f8f8fa,
+    toggleBackground: #dfe4ea,
+    headerBackground: #3c265f,
+    headerColor: white,
+    headerLink: #c6a8f5,
+    buttonTextColor: white,
+    buttonTextOnly: #b68ef7,
+    homePageText: #3c265f,
+    homePagePara: #3c265f,
+    sessionsPageBackgroundColor: #eeedf0,
+    sessionsPageFilterWrapper: black,
+    sessionsPageWarning: #3c265f,
+    sessionsPagePara: #3c265f,
+    sessionItemBackgroundColor: #3c265f,
+    sessionPageHeader: #3c265f,
+    sessionPageBackgroundColor: #eeedf0,
+    sessionPageColor: #3c265f,
+  ),
+  dark: (
+    bodyBackgroundColor: #222736,
+    toggleBackground: #606071,
+    buttonTextColor: #0a0218,
+    buttonTextOnly: #ccb2f6,
+    headerBackground: #36394c,
+    headerColor: #cebfe7,
+    headerLink: #c6a8f5,
+    homePageText: #e1d8f0,
+    homePagePara: #d5cbe7,
+    sessionsPagePara: white,
+    sessionsPageBackgroundColor: #5a5563,
+    sessionPageHeader: #e1d8f0,
+    sessionPageBackgroundColor: #5a5563,
+    sessionPageColor: #e1d8f0,
+    sessionItemBackgroundColor: #352e41,
+    sessionsPageFilterWrapper: white,
+    sessionsPageWarning: white,
+  ),
+);
+
+@mixin themify($themes) {
+    @each $name, $values in $themes {
+      .#{$name}-theme {
+        $theme-map: $values !global;
+        @content;
+      }
+    }
+}
+
+@function themed($key) {
+    @return map-get($theme-map, $key);
+}

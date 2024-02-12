@@ -1,9 +1,9 @@
 import { FormEvent, useEffect, useRef, useState } from 'react';
-
 import Modal, { ModalHandle } from './UI/Modal.tsx';
 import Input from './UI/Input.tsx';
 import Button from './UI/Button.tsx';
 import { Session, useSessionsContext } from '../storage/upcoming-sessions.tsx';
+import '../index.scss';
 
 type BookModalProps = {
   session: Session;
@@ -14,7 +14,6 @@ export default function BookModal({ session, onClose }: BookModalProps) {
   const modalRef = useRef<ModalHandle>(null);
   const ctx = useSessionsContext();
   const [isBooked, setIsBooked] = useState(false);
-
 
   useEffect(() => {
     modalRef.current?.open();
