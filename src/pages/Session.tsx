@@ -23,10 +23,8 @@ export default function SessionPage() {
   }
 
   const history = useNavigate();
-  const modalRef = useRef<ModalHandle>(null);
   const ctx = useSessionsContext();
 
-  const form = useRef<HTMLFormElement>(null);
   const [showModal, setShowModal] = useState(false);
   const [isBooked, setIsBooked] = useState(false);
 

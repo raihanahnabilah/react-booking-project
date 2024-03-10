@@ -24,7 +24,7 @@ const Modal = forwardRef<ModalHandle, ModalProps>(function Modal({ children }, r
         };
     });
 
-    const { theme, setTheme } = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
 
     return ReactDOM.createPortal(
         <div className={`${theme}-theme`}>
