@@ -89,7 +89,7 @@ export default function SessionsPage() {
                   <h3>{session.title}</h3>
                   <p>{session.summary}</p>
                   <div className="actions">
-                    <Button to={`/sessions/${session.id}`}>Learn more</Button>
+                    <Button to={`/react-booking-project/sessions/${session.id}`}>Learn more</Button>
                   </div>
                 </div>
               </div>

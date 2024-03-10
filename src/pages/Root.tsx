@@ -49,10 +49,10 @@ export default function Root() {
               <nav>
                 <ul id="navigation">
                   <li>
-                    <Button className={isActive  === "home" ? "active-page" : ""} onClick={() => setActive("home")}  textOnly to="/">Our Mission</Button>
+                    <Button className={isActive  === "home" ? "active-page" : ""} onClick={() => setActive("home")}  textOnly to="/react-booking-project/">Our Mission</Button>
                   </li>
                   <li>
-                    <Button className={isActive  === "sessions" ? "active-page" : ""} onClick={() => setActive("sessions")} textOnly to="/sessions">Our Sessions</Button>
+                    <Button className={isActive  === "sessions" ? "active-page" : ""} onClick={() => setActive("sessions")} textOnly to="/react-booking-project/sessions">Our Sessions</Button>
                   </li>
                   <li>
                     <Button onClick={openCartHandler}>Your Upcoming Sessions</Button> {/** This should be like a modal */}
