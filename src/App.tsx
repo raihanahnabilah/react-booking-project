@@ -8,7 +8,7 @@ import Root from './pages/Root.tsx';
 
 const Router = createBrowserRouter([
   {
-    path: '/',
+    path: '/react-booking-project/',
     element: <Root />,
     children: [
       {
@@ -16,8 +16,8 @@ const Router = createBrowserRouter([
         element: <HomePage />,
       },
       // { path: 'mission', element: <HomePage /> },
-      { path: 'sessions', element: <SessionsPage /> },
-      { path: 'sessions/:id', element: <SessionPage /> },
+      { path: '/react-booking-project/sessions', element: <SessionsPage /> },
+      { path: '/react-booking-project/sessions/:id', element: <SessionPage /> },
     ],
   },
 ]);
